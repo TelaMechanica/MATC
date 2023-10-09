@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ... (Other head elements remain unchanged) ... -->
+    <script>
+        async function fetchUpdatedCallsigns() {
+            try {
+                let response = await fetch('/callsigns');
+                let data = await response.json();
+                let dropdown = document.getElementById('callsignDropdown');
+                dropdown.innerHTML = '';  // Clear existing options
+                
+                // Populate dropdown with new callsigns
+                for (let callsign of data.callsigns) {
+                    let option = document.createElement('option');
+                    option.text = callsign;
+                    option.value = callsign;
+                    dropdown.add(option);
+                }
+            } catch (error) {
+                console.error("Error fetching callsigns:", error);
+            }
+        }
+    </script>
+</head>
+
+<body onload="fetchUpdatedCallsigns();">
+    <h1>Select a Callsign</h1>
+    <form action="/" method="post">
+        <!-- Hidden CSRF Token Input -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <label for="callsignDropdown">Callsign:</label>
+        <select id="callsignDropdown" name="callsign"></select>
+        
+        <input type="submit" value="Connect">
+    </form>
+
+    <!-- Display message (if any) -->
+    {% if message %}
+    <div style="text-align:center; margin-top:20px; color: {{ message_color | default('red') }}">
+        {{ message }}
+    </div>
+    {% endif %}
+</body>
+
+</html>
