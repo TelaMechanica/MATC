@@ -3,7 +3,7 @@ MATC: Modular Antenna Tracker Caddy
 Overview
 The Modular Antenna Tracker Caddy (MATC) project emphasizes the principles of Open Source and Open Architecture. These principles culminate in a highly flexible system capable of tracking any position event inside the Team Awareness Kit (TAK) environment, encompassing UAS, MANET radios, and Android devices.
 
-Hardware Features
+**Features**
 
 Flexibility: MATC can be tailored to track any position event within the TAK environment.
 
@@ -15,8 +15,8 @@ MAVLink Connection: Connects and interacts with MAVLink compatible devices using
 
   Dual Multicast Listeners: The program listens to multicast messages on two different addresses and ports:
 
- ** Default TAK**: 239.2.3.1:6969
- ** Persistent Systems**: 239.23.212.230:18999
+ ** Default TAK** : 239.2.3.1:6969
+ ** Persistent Systems** : 239.23.212.230:18999
  
   CoT XML and Protocol Buffers Message Parsing: The application can process messages in both CoT XML format and Protocol Buffers format, determining the correct parsing method based on   the message contents.
 
