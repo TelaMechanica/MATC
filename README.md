@@ -15,8 +15,8 @@ MAVLink Connection: Connects and interacts with MAVLink compatible devices using
 
   Dual Multicast Listeners: The program listens to multicast messages on two different addresses and ports:
 
- ** Default TAK** : 239.2.3.1:6969
- ** Persistent Systems** : 239.23.212.230:18999
+ **Default TAK** 239.2.3.1:6969
+ **Persistent Systems** 239.23.212.230:18999
  
   CoT XML and Protocol Buffers Message Parsing: The application can process messages in both CoT XML format and Protocol Buffers format, determining the correct parsing method based on   the message contents.
 
