@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- ... (Other head elements remain unchanged) ... -->
     <script>
@@ -10,7 +9,7 @@
                 let data = await response.json();
                 let dropdown = document.getElementById('callsignDropdown');
                 dropdown.innerHTML = '';  // Clear existing options
-                
+
                 // Populate dropdown with new callsigns
                 for (let callsign of data.callsigns) {
                     let option = document.createElement('option');
@@ -22,9 +21,14 @@
                 console.error("Error fetching callsigns:", error);
             }
         }
+
+        function updateSelectedCallsign() {
+            var selectedCallsign = document.getElementById('callsignDropdown').value;
+            var listenerDetails = "Listener 1: 239.23.212.230:18999, Listener 2: 239.2.3.1:6969";
+            document.getElementById('selectedInfo').innerText = "Selected Callsign: " + selectedCallsign + "\n" + listenerDetails;
+        }
     </script>
 </head>
-
 <body onload="fetchUpdatedCallsigns();">
     <h1>Select a Callsign</h1>
     <form action="/" method="post">
@@ -32,10 +36,13 @@
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 
         <label for="callsignDropdown">Callsign:</label>
-        <select id="callsignDropdown" name="callsign"></select>
-        
+        <select id="callsignDropdown" name="callsign" onchange="updateSelectedCallsign()"></select>
+
         <input type="submit" value="Connect">
     </form>
+
+    <!-- Text box to display the selected callsign and listener details -->
+    <div id="selectedInfo" style="margin-top:20px;"></div>
 
     <!-- Display message (if any) -->
     {% if message %}
@@ -44,5 +51,4 @@
     </div>
     {% endif %}
 </body>
-
 </html>
